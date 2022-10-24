@@ -9,6 +9,19 @@ public class UsersDTO {
     private String userId;
     private String userPw;
 
+    public UsersDTO(int userCode, String userName, int userBirth, String userGender, String userEmail, String userId, String userPw) {
+        this.userCode = userCode;
+        this.userName = userName;
+        this.userBirth = userBirth;
+        this.userGender = userGender;
+        this.userEmail = userEmail;
+        this.userId = userId;
+        this.userPw = userPw;
+    }
+
+    public UsersDTO() {
+    }
+
     public int getUserCode() {
         return userCode;
     }
