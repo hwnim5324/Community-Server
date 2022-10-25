@@ -6,18 +6,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class UsersDAO {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+
+    public UsersDAO(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<UsersDTO> findByUserCode(int userCode){
-        RowMapper<UsersDTO> mapper = new UsersDTOMapper();
-        String query = "SELECT * FROM users WHERE userCode = ?";
+        String SQL = "SELECT * FROM users";
+        return jdbcTemplate.query(SQL, usersRowMapper());
+    }
 
-        return jdbcTemplate.query(query, mapper, userCode);
+    private RowMapper<UsersDTO> usersRowMapper() {
+        return new RowMapper<UsersDTO>() {
+            @Override
+            public UsersDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UsersDTO user = new UsersDTO(
+                        rs.getInt("userCode"),
+                        rs.getString("userName"),
+                        rs.getInt("userBirth"),
+                        rs.getString("userGender"),
+                        rs.getString("userEmail"),
+                        rs.getString("userId"),
+                        rs.getString("userPw"));
+                return user;
+            }
+        };
     }
 }
 
