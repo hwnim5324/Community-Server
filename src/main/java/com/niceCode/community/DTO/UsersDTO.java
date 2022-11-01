@@ -1,12 +1,22 @@
 package com.niceCode.community.DTO;
 
+import javax.persistence.*;
+
+@Entity(name = "users")
 public class UsersDTO {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "userCode")
     private int userCode;
+    @Column(name = "userName")
     private String userName;
+    @Column(name = "userBirth")
     private int userBirth;
+    @Column(name = "userGender")
     private String userGender;
+    @Column(name = "userEmail")
     private String userEmail;
+    @Column(name = "userId")
     private String userId;
+    @Column(name = "userPw")
     private String userPw;
 
     public UsersDTO(int userCode, String userName, int userBirth, String userGender, String userEmail, String userId, String userPw) {
@@ -19,8 +29,7 @@ public class UsersDTO {
         this.userPw = userPw;
     }
 
-    public UsersDTO() {
-    }
+    public UsersDTO() { }
 
     public int getUserCode() {
         return userCode;

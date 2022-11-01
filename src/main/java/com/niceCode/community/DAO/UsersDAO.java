@@ -1,24 +1,20 @@
 package com.niceCode.community.DAO;
 
 import com.niceCode.community.DTO.UsersDTO;
-import com.niceCode.community.mapper.UsersDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
+@Repository
 public class UsersDAO {
 
-    private final JdbcTemplate jdbcTemplate;
 
-    public UsersDAO(JdbcTemplate jdbcTemplate){
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private final JdbcTemplate jdbcTemplate=new JdbcTemplate();
 
     public List<UsersDTO> findByUserCode(int userCode){
         String SQL = "SELECT * FROM users";
