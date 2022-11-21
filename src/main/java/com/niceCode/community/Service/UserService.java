@@ -24,6 +24,10 @@ public class UserService {
         return jpaUsersRepository.findById(userCode);
     }
 
+    public Optional<UsersDTO> readByUserId(String userId) {
+        return jpaUsersRepository.findByUserId(userId);
+    }
+
     public UsersDTO updateUser(UsersDTO user){
         //userCode가 존재하는지 판별 후 업데이트로 변경 필요.
         return jpaUsersRepository.save(user);

@@ -9,6 +9,8 @@ public interface JPAUsersRepository extends JpaRepository<UsersDTO, Integer> {
     @Override
     Optional<UsersDTO> findById(Integer userCode);
 
+    Optional<UsersDTO> findByUserId(String userId);
+
     @Override
     UsersDTO save(UsersDTO user);
 

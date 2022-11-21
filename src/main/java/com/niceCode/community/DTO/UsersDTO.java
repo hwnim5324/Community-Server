@@ -9,7 +9,7 @@ public class UsersDTO {
     @Column(name = "userName")
     private String userName;
     @Column(name = "userBirth")
-    private int userBirth;
+    private String userBirth;
     @Column(name = "userGender")
     private String userGender;
     @Column(name = "userEmail")
@@ -19,7 +19,7 @@ public class UsersDTO {
     @Column(name = "userPw")
     private String userPw;
 
-    public UsersDTO(int userCode, String userName, int userBirth, String userGender, String userEmail, String userId, String userPw) {
+    public UsersDTO(int userCode, String userName, String userBirth, String userGender, String userEmail, String userId, String userPw) {
         this.userCode = userCode;
         this.userName = userName;
         this.userBirth = userBirth;
@@ -47,11 +47,11 @@ public class UsersDTO {
         this.userName = userName;
     }
 
-    public int getUserBirth() {
+    public String getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(int userBirth) {
+    public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
 

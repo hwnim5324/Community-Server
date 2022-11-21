@@ -28,7 +28,7 @@ public class UsersDAO {
                 UsersDTO user = new UsersDTO(
                         rs.getInt("userCode"),
                         rs.getString("userName"),
-                        rs.getInt("userBirth"),
+                        rs.getString("userBirth"),
                         rs.getString("userGender"),
                         rs.getString("userEmail"),
                         rs.getString("userId"),

@@ -3,7 +3,6 @@ package com.niceCode.community.Controller;
 import com.niceCode.community.DTO.UsersDTO;
 import com.niceCode.community.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +18,17 @@ public class UserController {
 
     @PostMapping("/signup")       //create
     public ResponseEntity<UsersDTO> signUp(@RequestBody UsersDTO user){
-
         return ResponseEntity.ok().body(userService.createUser(user));
+    }
+
+    @PostMapping("/signin")       //read
+    public Integer signIn(@RequestBody UsersDTO user){
+        UsersDTO userFinded = userService.readByUserId(user.getUserId()).get();
+        String PW = userFinded.getUserPw();
+        if(user.getUserPw().equals(PW)){
+            return userFinded.getUserCode();
+        }
+        return -1;
     }
 
     @GetMapping("/users/{userCode}")       //read
