@@ -29,13 +29,21 @@ public class UserService {
     }
 
     public UsersDTO updateUser(UsersDTO user){
-        //userCode가 존재하는지 판별 후 업데이트로 변경 필요.
-        return jpaUsersRepository.save(user);
+        UsersDTO update = readByUserCode(user.getUserCode()).get();
+        update.setUserId(user.getUserId());
+        update.setUserPw(user.getUserPw());
+        update.setUserName(user.getUserName());
+        update.setUserBirth(user.getUserBirth());
+        update.setUserEmail(user.getUserEmail());
+        return jpaUsersRepository.save(update);
     }
 
     public boolean deleteUser(int userCode){
-        //userCode가 존재하는지 판별 후 제거로 변경 및 true,false 반환 필요.
-        jpaUsersRepository.deleteById(userCode);
-        return true;
+        try{
+            jpaUsersRepository.deleteById(userCode);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }
